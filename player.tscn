@@ -4,7 +4,13 @@
 [ext_resource type="Script" path="res://player.gd" id="2_1535v"]
 
 [node name="Player" type="Sprite2D"]
-modulate = Color(0, 0.584314, 1, 1)
+modulate = Color(0.129412, 0.470588, 1, 1)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("1_7xfie")
 script = ExtResource("2_1535v")
+
+[node name="Reload_speed" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[connection signal="timeout" from="Reload_speed" to="." method="_on_reload_speed_timeout"]
