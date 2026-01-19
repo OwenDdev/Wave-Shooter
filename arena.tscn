@@ -1,10 +1,23 @@
-[gd_scene load_steps=3 format=3 uid="uid://cmsmrpvdvq5u0"]
+[gd_scene load_steps=5 format=3 uid="uid://cmsmrpvdvq5u0"]
 
 [ext_resource type="Script" path="res://arena.gd" id="1_5g7r8"]
 [ext_resource type="PackedScene" uid="uid://bvyhci1gkahna" path="res://player.tscn" id="2_hnaq8"]
+[ext_resource type="PackedScene" uid="uid://d4b7m5538enqw" path="res://enemy.tscn" id="3_qxhuw"]
+
+[sub_resource type="Environment" id="Environment_chsiw"]
+background_mode = 3
+glow_enabled = true
+glow_intensity = 1.0
+glow_bloom = 0.5
 
 [node name="Arena" type="Node2D"]
 script = ExtResource("1_5g7r8")
 
 [node name="Player" parent="." instance=ExtResource("2_hnaq8")]
 position = Vector2(320, 180)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_chsiw")
+
+[node name="Enemy" parent="." instance=ExtResource("3_qxhuw")]
+position = Vector2(123, 87)
