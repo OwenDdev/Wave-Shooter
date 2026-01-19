@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://cmsmrpvdvq5u0"]
+[gd_scene load_steps=4 format=3 uid="uid://cmsmrpvdvq5u0"]
 
 [ext_resource type="Script" path="res://arena.gd" id="1_5g7r8"]
 [ext_resource type="PackedScene" uid="uid://bvyhci1gkahna" path="res://player.tscn" id="2_hnaq8"]
-[ext_resource type="PackedScene" uid="uid://d4b7m5538enqw" path="res://enemy.tscn" id="3_qxhuw"]
 
 [sub_resource type="Environment" id="Environment_chsiw"]
 background_mode = 3
@@ -19,5 +18,7 @@ position = Vector2(320, 180)
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_chsiw")
 
-[node name="Enemy" parent="." instance=ExtResource("3_qxhuw")]
-position = Vector2(123, 87)
+[node name="Enemy_spawn_timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Enemy_spawn_timer" to="." method="_on_enemy_spawn_timer_timeout"]
