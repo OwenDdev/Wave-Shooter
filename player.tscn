@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://bvyhci1gkahna"]
+[gd_scene load_steps=4 format=3 uid="uid://bvyhci1gkahna"]
 
 [ext_resource type="Texture2D" uid="uid://dmkq8ls1djneo" path="res://Square.png" id="1_7xfie"]
 [ext_resource type="Script" path="res://player.gd" id="2_1535v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fed0k"]
+size = Vector2(16, 16)
 
 [node name="Player" type="Sprite2D"]
 modulate = Color(0.129412, 0.470588, 1, 1)
@@ -13,4 +16,12 @@ script = ExtResource("2_1535v")
 wait_time = 0.1
 one_shot = true
 
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+visible = false
+position = Vector2(-2.38419e-07, 0)
+shape = SubResource("RectangleShape2D_fed0k")
+
 [connection signal="timeout" from="Reload_speed" to="." method="_on_reload_speed_timeout"]
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]

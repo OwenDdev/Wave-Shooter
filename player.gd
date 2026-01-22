@@ -7,6 +7,7 @@ var velocity = Vector2()
 var bullet = preload("res://bullet.tscn")
 
 var can_shoot = true
+var is_dead = false
 
 func _ready() -> void:
 	Global.player = self
@@ -22,13 +23,24 @@ func _process(delta: float) -> void:
 	# Maintain speed regardless of player direction
 	velocity = velocity.normalized() 
 	
-	global_position += speed * velocity * delta
+	if is_dead == false:
+		global_position += speed * velocity * delta
 	
 	# On click instance bullet
-	if Input.is_action_pressed("click") and Global.node_creation_parent != null and can_shoot:
+	if Input.is_action_pressed("click") and Global.node_creation_parent != null and can_shoot and is_dead == false:
 		Global.instance_node(bullet, global_position, Global.node_creation_parent)
 		$Reload_speed.start()
 		can_shoot = false
 
 func _on_reload_speed_timeout() -> void:
 	can_shoot = true
+
+
+func _on_hitbox_area_entered(area: Area2D) -> void:
+	if area.is_in_group("Enemy"):
+		is_dead = true
+		visible = false
+		await get_tree().create_timer(1).timeout
+		get_tree().reload_current_scene()
+		Global.points = 0
+		
