@@ -19,6 +19,9 @@ func _process(delta: float) -> void:
 	global_position += velocity * speed * delta
 	
 	if hp <= 0:
+		if Global.camera  != null:
+			Global.camera.screen_shake(60, 0.1)
+		
 		Global.points += 10
 		if Global.node_creation_parent != null:
 			var blood_particles_instance =  Global.instance_node(blood_particles, global_position, Global.node_creation_parent)

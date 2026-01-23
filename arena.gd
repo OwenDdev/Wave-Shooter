@@ -6,6 +6,8 @@ var enemy_1 = preload("res://enemy.tscn")
 func _ready() -> void:
 	Global.node_creation_parent = self
 	
+	Global.points = 0
+	
 func _exit_tree() -> void:
 	Global.node_creation_parent = null
 	

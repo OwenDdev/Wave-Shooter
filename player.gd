@@ -23,6 +23,10 @@ func _process(delta: float) -> void:
 	# Maintain speed regardless of player direction
 	velocity = velocity.normalized() 
 	
+	# Prevents Player for exceeding screen boundary
+	global_position.x = clamp(global_position.x, 24, 616)
+	global_position.y = clamp(global_position.y, 24, 336)
+	
 	if is_dead == false:
 		global_position += speed * velocity * delta
 	
@@ -42,5 +46,5 @@ func _on_hitbox_area_entered(area: Area2D) -> void:
 		visible = false
 		await get_tree().create_timer(1).timeout
 		get_tree().reload_current_scene()
-		Global.points = 0
+		
 		
