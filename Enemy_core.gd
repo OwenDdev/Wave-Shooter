@@ -8,6 +8,7 @@ var stun = false
 @export var hp : int = 3
 @export var knockback : int = 600
 @export var screenshake : int = 120
+@export var point_value : int = 10
 
 @onready var current_color = modulate
 
@@ -18,7 +19,7 @@ func _process(delta: float) -> void:
 		if Global.camera  != null:
 			Global.camera.screen_shake(screenshake, 0.2)
 		
-		Global.points += 10
+		Global.points += point_value
 		if Global.node_creation_parent != null:
 			var blood_particles_instance =  Global.instance_node(blood_particles, global_position, Global.node_creation_parent)
 			blood_particles_instance.rotation = velocity.angle()

@@ -53,6 +53,7 @@ func _on_hitbox_area_entered(area: Area2D) -> void:
 	if area.is_in_group("Enemy"):
 		is_dead = true
 		visible = false
+		Global.save_game()
 		await get_tree().create_timer(1).timeout
 		get_tree().reload_current_scene()
 
