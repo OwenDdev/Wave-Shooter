@@ -1,7 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://cmsmrpvdvq5u0"]
+[gd_scene load_steps=10 format=3 uid="uid://cmsmrpvdvq5u0"]
 
 [ext_resource type="Script" path="res://arena.gd" id="1_5g7r8"]
+[ext_resource type="PackedScene" uid="uid://dbkmo7jkj2qpx" path="res://enemy_1.tscn" id="2_g0cto"]
 [ext_resource type="PackedScene" uid="uid://bvyhci1gkahna" path="res://player.tscn" id="2_hnaq8"]
+[ext_resource type="PackedScene" uid="uid://cnto3in087c7d" path="res://enemy_2.tscn" id="3_fghs1"]
 [ext_resource type="FontFile" uid="uid://b28j27r6xf8et" path="res://Font.ttf" id="3_xtixm"]
 [ext_resource type="Script" path="res://score.gd" id="4_230fa"]
 [ext_resource type="Script" path="res://highscore.gd" id="5_tah1h"]
@@ -15,6 +17,7 @@ glow_bloom = 0.5
 
 [node name="Arena" type="Node2D"]
 script = ExtResource("1_5g7r8")
+enemies = Array[PackedScene]([ExtResource("2_g0cto"), ExtResource("3_fghs1")])
 
 [node name="Player" parent="." instance=ExtResource("2_hnaq8")]
 position = Vector2(320, 180)

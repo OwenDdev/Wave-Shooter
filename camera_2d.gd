@@ -15,9 +15,11 @@ func _process(delta: float) -> void:
 	
 	if screen_shake_start == true:
 		global_position += Vector2(randi_range(-shake_intensity, shake_intensity), randi_range(-shake_intensity, shake_intensity)) * delta
-
+	else:
+			global_position = lerp(global_position, Vector2(320, 180), 0.3)
+	
 func screen_shake(intensity, time):
-	zoom = Vector2(1, 1) - Vector2(intensity * 0.002, intensity * 0.002)
+	zoom = Vector2(1, 1) - Vector2(intensity * 0.0015, intensity * 0.0015)
 	shake_intensity = intensity
 	$Screen_shake_time.wait_time = time
 	$Screen_shake_time.start()
@@ -26,4 +28,3 @@ func screen_shake(intensity, time):
 
 func _on_screen_shake_time_timeout() -> void:
 	screen_shake_start = false
-	global_position = Vector2(320, 180)

@@ -1,6 +1,7 @@
 extends Node2D
 
-var enemy_1 = preload("res://enemy.tscn")
+@export var enemies: Array[PackedScene] 
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -17,11 +18,13 @@ func _on_enemy_spawn_timer_timeout() -> void:
 	while enemy_position.x < 640 and enemy_position.x > -80 and enemy_position.x < 360 and enemy_position.y > -45:
 		enemy_position = Vector2(randf_range(-160, 670), randf_range(-90, 390))
 	
-	Global.instance_node(enemy_1, enemy_position, self)
+	var enemy_number = round(randi_range(0, enemies.size() - 1))
+	
+	Global.instance_node(enemies[enemy_number], enemy_position, self)
 	# Exponential difficulty curve
 	#$Enemy_spawn_timer.wait_time *= 0.95
 
 
 func _on_difficulty_timer_timeout() -> void:
 	if $Enemy_spawn_timer.wait_time > 0.5:
-		$Enemy_spawn_timer.wait_time -= 0.1
+		$Enemy_spawn_timer.wait_time -= 0.025
