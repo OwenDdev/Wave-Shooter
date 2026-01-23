@@ -6,6 +6,7 @@ var player = null
 var camera = null
 
 var points = 0
+var Highscore = 0
 
 func instance_node(node, location, parent):
 	var node_instance = node.instantiate() 

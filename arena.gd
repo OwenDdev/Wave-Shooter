@@ -18,3 +18,10 @@ func _on_enemy_spawn_timer_timeout() -> void:
 		enemy_position = Vector2(randf_range(-160, 670), randf_range(-90, 390))
 	
 	Global.instance_node(enemy_1, enemy_position, self)
+	# Exponential difficulty curve
+	#$Enemy_spawn_timer.wait_time *= 0.95
+
+
+func _on_difficulty_timer_timeout() -> void:
+	if $Enemy_spawn_timer.wait_time > 0.5:
+		$Enemy_spawn_timer.wait_time -= 0.1
