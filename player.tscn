@@ -16,7 +16,10 @@ script = ExtResource("2_1535v")
 wait_time = 0.1
 one_shot = true
 
-[node name="Hitbox" type="Area2D" parent="."]
+[node name="power_up_cool_down" type="Timer" parent="."]
+one_shot = true
+
+[node name="Hitbox" type="Area2D" parent="." groups=["Player"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 visible = false
@@ -24,4 +27,5 @@ position = Vector2(-2.38419e-07, 0)
 shape = SubResource("RectangleShape2D_fed0k")
 
 [connection signal="timeout" from="Reload_speed" to="." method="_on_reload_speed_timeout"]
+[connection signal="timeout" from="power_up_cool_down" to="." method="_on_power_up_cool_down_timeout"]
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]

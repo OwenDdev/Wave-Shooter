@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cmsmrpvdvq5u0"]
+[gd_scene load_steps=12 format=3 uid="uid://cmsmrpvdvq5u0"]
 
 [ext_resource type="Script" path="res://arena.gd" id="1_5g7r8"]
 [ext_resource type="PackedScene" uid="uid://dbkmo7jkj2qpx" path="res://enemy_1.tscn" id="2_g0cto"]
@@ -6,8 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://cnto3in087c7d" path="res://enemy_2.tscn" id="3_fghs1"]
 [ext_resource type="FontFile" uid="uid://b28j27r6xf8et" path="res://Font.ttf" id="3_xtixm"]
 [ext_resource type="Script" path="res://score.gd" id="4_230fa"]
+[ext_resource type="PackedScene" uid="uid://crdnt15sjfku1" path="res://power_up_reloaad.tscn" id="4_xavjs"]
 [ext_resource type="Script" path="res://highscore.gd" id="5_tah1h"]
 [ext_resource type="Script" path="res://camera_2d.gd" id="5_xm3bd"]
+[ext_resource type="PackedScene" uid="uid://c0f31mjykhho2" path="res://power_up_damage.tscn" id="5_xow70"]
 
 [sub_resource type="Environment" id="Environment_chsiw"]
 background_mode = 3
@@ -18,6 +20,7 @@ glow_bloom = 0.5
 [node name="Arena" type="Node2D"]
 script = ExtResource("1_5g7r8")
 enemies = Array[PackedScene]([ExtResource("2_g0cto"), ExtResource("3_fghs1")])
+power_ups = Array[PackedScene]([ExtResource("4_xavjs"), ExtResource("5_xow70")])
 
 [node name="Player" parent="." instance=ExtResource("2_hnaq8")]
 position = Vector2(320, 180)
@@ -30,6 +33,10 @@ wait_time = 3.0
 autostart = true
 
 [node name="Difficulty_timer" type="Timer" parent="."]
+autostart = true
+
+[node name="Power_up_spawn_timer" type="Timer" parent="."]
+wait_time = 15.0
 autostart = true
 
 [node name="UI" type="Node2D" parent="."]
@@ -82,4 +89,5 @@ one_shot = true
 
 [connection signal="timeout" from="Enemy_spawn_timer" to="." method="_on_enemy_spawn_timer_timeout"]
 [connection signal="timeout" from="Difficulty_timer" to="." method="_on_difficulty_timer_timeout"]
+[connection signal="timeout" from="Power_up_spawn_timer" to="." method="_on_power_up_spawn_timer_timeout"]
 [connection signal="timeout" from="Camera2D/Screen_shake_time" to="Camera2D" method="_on_screen_shake_time_timeout"]

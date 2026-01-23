@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://c0f31mjykhho2"]
+
+[ext_resource type="PackedScene" uid="uid://crdnt15sjfku1" path="res://power_up_reloaad.tscn" id="1_3c3sd"]
+
+[node name="Power_up_damage" instance=ExtResource("1_3c3sd")]
+modulate = Color(0.956863, 0.0588235, 0.65098, 1)
+player_variable_modify = "damage"
+player_variable_set = 2.0

@@ -22,6 +22,7 @@ func _process(delta: float) -> void:
 		if Global.node_creation_parent != null:
 			var blood_particles_instance =  Global.instance_node(blood_particles, global_position, Global.node_creation_parent)
 			blood_particles_instance.rotation = velocity.angle()
+			blood_particles_instance.modulate = Color.from_hsv(current_color.h, 0.75, current_color.v)
 		queue_free()
 
 func basic_movement_towards_player(delta):
@@ -39,7 +40,7 @@ func _on_hitbox_area_entered(area: Area2D) -> void:
 		modulate = Color.WHITE
 		#basic knockback
 		velocity = -velocity * knockback
-		hp -= 1
+		hp -= area.get_parent().damage
 		stun = true
 		$Stun_timer.start()
 		area.get_parent().queue_free()
